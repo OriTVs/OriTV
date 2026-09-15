@@ -20,8 +20,8 @@ jobs:
           rm -f lampa-source-main.zip
           rm -rf /tmp/lampa
           git clone --depth 1 https://github.com/yumata/lampa-source.git /tmp/lampa
-          cp -a /tmp/lampa/. .
-          rm -rf .git .github/workflows/import-lampa.yml
+          find /tmp/lampa -mindepth 1 -maxdepth 1 ! -name .git -exec cp -a {} . \;
+          rm -f .github/workflows/import-lampa.yml
       - name: Commit imported source
         run: |
           git config user.name 'github-actions[bot]'
