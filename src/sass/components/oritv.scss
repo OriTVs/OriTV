@@ -1,0 +1,147 @@
+/* OriTV visual layer — presentation only. Lampa application logic remains untouched. */
+
+:root {
+    --oritv-accent: #7c5cff;
+    --oritv-accent-2: #32d5ff;
+    --oritv-panel: rgba(18, 20, 28, 0.78);
+    --oritv-panel-strong: rgba(24, 27, 38, 0.94);
+    --oritv-line: rgba(255, 255, 255, 0.08);
+}
+
+body {
+    background:
+        radial-gradient(circle at 78% 8%, rgba(124, 92, 255, 0.13), transparent 28em),
+        radial-gradient(circle at 12% 88%, rgba(50, 213, 255, 0.08), transparent 24em),
+        #0d0f14;
+}
+
+.head {
+    background: linear-gradient(180deg, rgba(9, 11, 16, 0.92), rgba(9, 11, 16, 0));
+    backdrop-filter: blur(12px);
+
+    &__body {
+        padding-top: 0.8em;
+        padding-bottom: 0.8em;
+    }
+
+    &__logo-icon {
+        width: auto;
+        min-width: 5.5em;
+        height: 2.7em;
+        margin-right: 1.15em;
+        display: flex;
+        align-items: center;
+
+        img,
+        svg {
+            display: none;
+        }
+
+        &::before {
+            content: 'OriTV';
+            font-size: 1.35em;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            background: linear-gradient(100deg, #fff 20%, var(--oritv-accent-2) 48%, var(--oritv-accent) 82%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    }
+
+    &__title {
+        font-weight: 400;
+        letter-spacing: -0.02em;
+    }
+
+    &__action {
+        transition: transform 0.18s ease, background-color 0.18s ease;
+
+        &.focus,
+        &.hover {
+            transform: translateY(-1px) scale(1.03);
+            background: linear-gradient(135deg, #fff, #e9f7ff);
+        }
+    }
+}
+
+.menu {
+    padding: 0.55em;
+    border: 1px solid var(--oritv-line);
+    border-radius: 1.35em;
+    background: rgba(13, 15, 21, 0.72);
+    box-shadow: 0 1.2em 3em rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(18px);
+
+    &__item {
+        border: 1px solid transparent;
+        border-radius: 0.9em;
+        transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+
+        &.focus,
+        &.hover,
+        &.traverse {
+            background: linear-gradient(100deg, rgba(124, 92, 255, 0.24), rgba(50, 213, 255, 0.10));
+            border-color: rgba(124, 92, 255, 0.24);
+            color: #fff;
+            transform: translateX(0.12em);
+        }
+    }
+
+    &__text {
+        font-weight: 400;
+    }
+}
+
+.navigation-tabs {
+    border-color: var(--oritv-line);
+}
+
+.card {
+    transition: transform 0.2s ease, filter 0.2s ease;
+
+    &.focus,
+    &.hover {
+        transform: translateY(-0.18em) scale(1.025);
+        filter: brightness(1.08);
+    }
+}
+
+.button {
+    border-radius: 0.8em;
+}
+
+.modal__content,
+.selectbox__content,
+.settings__content {
+    border: 1px solid var(--oritv-line);
+    background: var(--oritv-panel-strong);
+    box-shadow: 0 1.5em 4em rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(22px);
+}
+
+.settings__item,
+.selectbox__item {
+    border-radius: 0.65em;
+}
+
+body.light--version {
+    --oritv-panel: rgba(255, 255, 255, 0.88);
+    --oritv-panel-strong: rgba(255, 255, 255, 0.96);
+    --oritv-line: rgba(0, 0, 0, 0.08);
+    background: #f4f6fa;
+
+    .head {
+        background: linear-gradient(180deg, rgba(244, 246, 250, 0.94), rgba(244, 246, 250, 0));
+    }
+
+    .menu {
+        background: rgba(255, 255, 255, 0.78);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .head__logo-icon {
+        min-width: auto;
+    }
+}
